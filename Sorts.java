@@ -88,7 +88,7 @@ public class Sorts{
     public void insertionSort(ArrayList <Integer> list){
         //Sort Code Start
         for(int i=1; i < list.size(); i++){
-            
+
             int key = list.get(i);
             steps += 1;
             for(int j = i-1; j >= 0; j--){
@@ -115,7 +115,7 @@ public class Sorts{
         System.out.println("Insertion Sort");
         System.out.println();
     }
-    
+
     public void mergeSort(ArrayList <Integer> list, int low, int high) {
         //Sort Code Start
         // check if low is smaller than high, if not then the array is sorted
@@ -167,6 +167,39 @@ public class Sorts{
             m++;
             steps += 1;
         }
+    }
+
+    public int sequentialSearch(ArrayList <Integer> list, int findMe)
+    {
+        int thisIt = list.get(0);
+        int thisIndex = 0;
+        for(thisIndex = 0; (thisIndex < list.size()) && (thisIt != findMe); thisIndex++)
+        {
+            thisIt = list.get(thisIndex);
+        }
+        if(thisIt != findMe)
+            return -1;
+        else
+            return thisIndex;
+    }
+
+    public int binarySearch(ArrayList <Integer> list, int findMe, int min, int max)
+    {
+        mergeSort(list, min, max);
+        steps = 0;
+        if(max < min)
+            return -1;
+        else
+        {
+            int mid = (max + min)/2;
+            if(list.get(mid) > findMe)
+                return binarySearch(list, findMe, min, mid - 1);
+            else if(list.get(mid) < findMe)
+                return binarySearch(list, findMe, mid + 1, max);
+            else
+                return mid;
+        }
+        
     }
 
     /**
