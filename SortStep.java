@@ -37,14 +37,18 @@ public class SortStep{
             System.out.println("(3) Insertion sort");
             System.out.println("(4) Recursive mergesort");
             System.out.println("(5) Fill with Integers");
+            System.out.println("(6) Search Sequentially");
+            System.out.println("(7) Search Binarily");
             System.out.println("(Q) Quit");
             System.out.println();
             System.out.print("Choice ---> ");
             choice = console.next() + " ";
-            if ('1' <= choice.charAt(0) && choice.charAt(0) <= '6'){
+            if ('1' <= choice.charAt(0) && choice.charAt(0) <= '7'){
                 System.out.println();
 
                 mySorts.setStepCount(0);
+                int userWants;
+                int result = -1;
 
                 switch (choice.charAt(0)){
                     case '1':
@@ -71,7 +75,21 @@ public class SortStep{
                     break;
                     case '5':
                     listType = "Integer";
-                    break;              
+                    break;   
+                    case '6':
+                    resetArray();
+                    System.out.println("What integer do you want to search for?");
+                    userWants = console.nextInt();
+                    result = mySorts.sequentialSearch(myArray, userWants);
+                    break;
+                    case '7':
+                    resetArray();
+                    mySorts.mergeSort(myArray, 0, myArray.size() - 1);
+                    mySorts.setStepCount(0);
+                    System.out.println("What integer do you want to search for?");
+                    userWants = console.nextInt();
+                    result = mySorts.binarySearch(myArray, userWants, 0, myArray.size() - 1);
+                    break;
                 }
 
                 if ('1' <= choice.charAt(0) && choice.charAt(0) <= '4'){
@@ -79,6 +97,17 @@ public class SortStep{
                     System.out.println("Array sorted to:");
                     screenOutput();
                     System.out.println();
+                    System.out.println("# steps = " + mySorts.getStepCount());
+                    System.out.println();
+                }
+                 if ('6' <= choice.charAt(0) && choice.charAt(0) <= '7'){
+                    System.out.println();
+                    System.out.print("Result of search was: ");
+                    if(result == -1)
+                        System.out.println("The Requested Intger Was Not Found!");
+                    else
+                        System.out.println("The Requested Intger Was Found!");
+                    System.out.println(); 
                     System.out.println("# steps = " + mySorts.getStepCount());
                     System.out.println();
                 }

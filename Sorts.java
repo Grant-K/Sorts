@@ -173,33 +173,39 @@ public class Sorts{
     {
         int thisIt = list.get(0);
         int thisIndex = 0;
+        steps += 1;
         for(thisIndex = 0; (thisIndex < list.size()) && (thisIt != findMe); thisIndex++)
         {
             thisIt = list.get(thisIndex);
+            steps += 1;
         }
+        steps += 1;
         if(thisIt != findMe)
+        {
             return -1;
+        }
         else
             return thisIndex;
     }
 
     public int binarySearch(ArrayList <Integer> list, int findMe, int min, int max)
     {
-        mergeSort(list, min, max);
-        steps = 0;
         if(max < min)
             return -1;
         else
         {
             int mid = (max + min)/2;
+            steps += 1;
             if(list.get(mid) > findMe)
                 return binarySearch(list, findMe, min, mid - 1);
             else if(list.get(mid) < findMe)
+            {
+                steps += 1;
                 return binarySearch(list, findMe, mid + 1, max);
+            }
             else
                 return mid;
         }
-        
     }
 
     /**
